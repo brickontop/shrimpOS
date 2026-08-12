@@ -1,0 +1,12 @@
+name: reproducible-build
+on: [push, pull_request]
+jobs:
+  iso:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y live-build debootstrap squashfs-tools xorriso qemu-system-x86
+      - run: export SOURCE_DATE_EPOCH=1714521600; ./scripts/lock-packages.sh; sudo lb build; mv live-image-amd64.hybrid.iso ShrimpOS.iso; sha256sum ShrimpOS.iso > ShrimpOS.iso.sha256
+      - run: ./tests/run.sh ShrimpOS.iso
+      - uses: actions/upload-artifact@v4
+        with: {name: ShrimpOS, path: 'ShrimpOS.iso*'}
