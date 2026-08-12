@@ -1,0 +1,15 @@
+# Locked by scripts/lock-packages.sh against the configured snapshot.
+# Do not replace this file with unreviewed current-repository versions.
+live-build=20230502ubuntu3
+linux-image-generic=6.8.0-31.31
+firefox=1:1snap1-0ubuntu2
+network-manager=1.46.0-1ubuntu2
+wireplumber=0.4.17-1ubuntu4
+pipewire=1.0.5-1ubuntu1
+bubblewrap=0.8.0-1ubuntu0.1
+gnupg=2.4.4-2ubuntu17
+sudo=1.9.15p5-3ubuntu5
+python3=3.12.3-0ubuntu2
+python3-flask=2.3.3-1ubuntu0.1
+xfce4=4.18
+calamares=3.3.4

@@ -1,0 +1,13 @@
+linux-image-generic
+firefox
+network-manager
+wireplumber
+pipewire-audio
+bubblewrap
+gnupg
+sudo
+python3
+python3-flask
+xfce4
+lightdm
+calamares

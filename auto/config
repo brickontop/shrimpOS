@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+lb config noauto \
+  --distribution noble \
+  --architectures amd64 \
+  --archive-areas 'main restricted universe multiverse' \
+  --mirror-bootstrap 'http://snapshot.ubuntu.com/ubuntu/20240501T000000Z/' \
+  --mirror-chroot 'http://snapshot.ubuntu.com/ubuntu/20240501T000000Z/' \
+  --mirror-binary 'http://snapshot.ubuntu.com/ubuntu/20240501T000000Z/' \
+  --bootappend-live 'boot=live components username=shrimp hostname=shrimp-os' \
+  --iso-application 'ShrimpOS' --iso-volume 'SHRIMPOS_2404' \
+  --apt-recommends false --apt-indices false

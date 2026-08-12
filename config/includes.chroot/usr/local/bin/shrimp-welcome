@@ -1,0 +1,2 @@
+#!/bin/sh
+zenity --info --title='Welcome' --text='ShrimpOS has no autonomous agent. Use store only for signed apps; every installation requires typed approval. Safe Mode disables store changes. See /usr/share/doc/shrimp/README.md.'

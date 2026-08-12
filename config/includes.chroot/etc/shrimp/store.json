@@ -1,0 +1,1 @@
+{"manifest_url":"https://store.example.invalid/manifest.json","keyring":"/etc/shrimp/store.gpg","root":"/var/lib/store/apps","safe_mode_kernel_arg":"shrimp.safe=1"}

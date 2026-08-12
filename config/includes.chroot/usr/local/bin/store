@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import argparse, hashlib, json, os, shutil, subprocess, sys, tempfile, urllib.request
+from pathlib import Path
+sys.path.insert(0,'/usr/local/lib/shrimp'); from audit import approve, propose
+CFG=json.load(open('/etc/shrimp/store.json')); ROOT=Path(CFG['root'])
+def fetch(url):
+    with urllib.request.urlopen(url) as r: return r.read()
+def manifest():
+    with tempfile.TemporaryDirectory() as d:
+        p=Path(d); (p/'m').write_bytes(fetch(CFG['manifest_url'])); (p/'m.asc').write_bytes(fetch(CFG['manifest_url']+'.asc'))
+        subprocess.run(['gpgv','--keyring',CFG['keyring'],str(p/'m.asc'),str(p/'m')],check=True)
+        return json.loads((p/'m').read_text())
+def install(name, dev):
+    if 'shrimp.safe=1' in Path('/proc/cmdline').read_text(): raise SystemExit('Safe Mode: store changes disabled.')
+    data=manifest(); app=next((x for x in data['apps'] if x['name']==name),None)
+    if not app: raise SystemExit('Unknown app')
+    blob=fetch(app['url']); actual=hashlib.sha256(blob).hexdigest()
+    if actual != app['sha256'] and not dev: raise SystemExit('Hash mismatch')
+    if dev and input('Type I ACCEPT UNSIGNED CODE: ') != 'I ACCEPT UNSIGNED CODE': raise SystemExit('Not approved')
+    target=ROOT/name; rec=propose('store-install',f'install {name}','',f'{target}: {actual}\n')
+    approve(rec,f'INSTALL {name}'); target.mkdir(parents=True,exist_ok=True); (target/'app.squashfs').write_bytes(blob)
+def main():
+ p=argparse.ArgumentParser(); s=p.add_subparsers(dest='cmd',required=True); i=s.add_parser('install'); i.add_argument('name'); i.add_argument('--dev-mode',action='store_true'); s.add_parser('update').add_argument('--check-only',action='store_true'); a=p.parse_args()
+ if a.cmd=='install': install(a.name,a.dev_mode)
+ else: print('No automatic updates. Run store install NAME after review.')
+if __name__=='__main__': main()

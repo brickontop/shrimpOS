@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+id shrimp >/dev/null 2>&1 || useradd -m -s /bin/bash -G sudo shrimp
+chmod 0440 /etc/sudoers.d/shrimp
+mkdir -p /var/lib/shrimp/proposals /var/lib/store/apps /var/log
+touch /var/log/shrimp-audit.log
+chmod 0700 /var/lib/shrimp/proposals

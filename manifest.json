@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "generated": "Run scripts/generate-manifest.sh on the release host to refresh file hashes.",
+  "base": {"distribution": "Ubuntu", "suite": "noble", "snapshot": "20240501T000000Z"},
+  "source_date_epoch": 1714521600,
+  "package_lock": "packages.txt",
+  "licenses": "LICENSES.txt",
+  "release_artifacts": ["ShrimpOS.iso", "ShrimpOS.iso.sha256"],
+  "source_files": ["auto/config", "build_chroot.sh", "config/", "docs/", "installer/", "packages.txt", "scripts/", "store-server/", "tests/", ".github/workflows/ci.yml"]
+}

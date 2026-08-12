@@ -1,0 +1,6 @@
+[Unit]
+Description=Store update check (operator initiated only)
+ConditionKernelCommandLine=!shrimp.safe=1
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/store update --check-only

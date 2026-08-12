@@ -1,0 +1,7 @@
+# Review and replace identity and storage values before any unattended install.
+autoinstall:
+  version: 1
+  identity: {hostname: shrimpos, username: shrimp, password: "$6$REPLACE_WITH_HASH"}
+  storage: {layout: {name: direct}}
+  late-commands:
+    - curtin in-target --target=/target -- systemctl disable store-update.service

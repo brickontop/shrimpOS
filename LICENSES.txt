@@ -1,0 +1,1 @@
+Generate after building with: `dpkg-query -W -f='${Package}\t${Version}\t${License}\n' > LICENSES.txt`. Package licenses are authoritative in `/usr/share/doc/<package>/copyright`; preserve them in release artifacts.

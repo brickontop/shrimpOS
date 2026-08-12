@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+app=${1:?app name required}; shift
+root=/var/lib/store/apps/$app
+test -r "$root/app.squashfs" || { echo 'App not installed' >&2; exit 1; }
+exec bwrap --unshare-all --die-with-parent --new-session --ro-bind "$root" /app --tmpfs /tmp --dir /home/user --proc /proc --dev /dev --chdir /app -- "$@"

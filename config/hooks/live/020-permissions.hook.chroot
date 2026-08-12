@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+chmod 0755 /usr/local/bin/store /usr/local/bin/store-run /usr/local/bin/shrimp-rollback /usr/local/bin/shrimp-grub-password /usr/local/bin/shrimp-welcome /usr/local/lib/shrimp/grub-password.sh

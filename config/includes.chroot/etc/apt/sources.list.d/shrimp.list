@@ -1,0 +1,3 @@
+# Locked release input; do not silently advance this date.
+deb http://snapshot.ubuntu.com/ubuntu/20240501T000000Z/ noble main restricted universe multiverse
+deb http://snapshot.ubuntu.com/ubuntu/20240501T000000Z/ noble-updates main restricted universe multiverse
